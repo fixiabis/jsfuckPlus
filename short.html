@@ -55,12 +55,7 @@
                 enContent += getChr(content[i]);
                 if (i < content.length - 1) enContent += "+\n" + tabs;
             }
-            return AB(enContent);
-        }
-        function AB(content) {
-            while (content.match(/a|b/))
-                content = content.replace("a", randomO("{}")).replace("b", randomO());
-            return content;
+            return enContent;
         }
         In.oninput = function () {
             var enString = "",
@@ -81,57 +76,47 @@
                 };
             }
             var nums = enString.match(/\W(NaN|-NaN|Infinity|-Infinity|\d+e\+\d+|\d+e\d+|\d+\.\d+|-\d+|\d+)/g);
-            console.log(nums);
             if (nums)
                 for (var i = 0; i < nums.length; i++) {
                     var sym = nums[i].match(/\W/, "");
                     if (sym != null) sym = sym[0];
                     if (sym == "$") continue;
-                    enString = enString.replace(nums[i], sym + AB(getNum(nums[i].replace(sym, ""))));
+                    enString = enString.replace(nums[i], sym + getNum(nums[i].replace(sym, "")));
                 }
             while (enString.match(/true|false/))
-                enString = enString.replace("true", `!!${randomO()}`).replace("false", `!${randomO()}`);
+                enString = enString.replace("true", "!![]").replace("false", "![]");
             Out.value = enString;
         };
-        function randomO(result) {
-            var v = ((Math.random() * 4) | 0);
-            if (!result) result = "[]";
-            for (var i = 0; i < v; i++)
-                result = (((Math.random() * 2) | 0) == 0
-                    ? `(${result})`
-                    : `[${result}]`);
-            return result;
-        }
         function getChr(char) {
             var charModel = {
-                "a": "(!b+b)",
-                "b": "(b+a)",
-                "c": "(b+a)",
-                "d": "(b[b]+b)",
-                "e": "(!!b+b)",
-                "f": "(!b+b)",
+                "a": "(![]+[])",
+                "b": "([]+{})",
+                "c": "([]+{})",
+                "d": "([][[]]+[])",
+                "e": "(!![]+[])",
+                "f": "(![]+[])",
                 "g": "_$",
-                "i": "(b[b]+b)",
-                "j": "(b+a)",
-                "l": "(!b+b)",
-                "m": "((+b)[__]+b)",
-                "n": "(b[b]+b)",
-                "o": "(b+a)",
-                "r": "(!!b+b)",
-                "s": "(!b+b)",
-                "t": "(!!b+b)",
-                "u": "b[b]+b",
-                "v": "($_+b)",
-                "B": "((!b)[__]+b)",
+                "i": "([][[]]+[])",
+                "j": "([]+{})",
+                "l": "(![]+[])",
+                "m": "((+[])[__]+[])",
+                "n": "([][[]]+[])",
+                "o": "([]+{})",
+                "r": "(!![]+[])",
+                "s": "(![]+[])",
+                "t": "(!![]+[])",
+                "u": "([][[]]+[])",
+                "v": "($_+[])",
+                "B": "((![])[__]+[])",
                 "C": "_$$",
                 "U": "_$$",
-                "(": "($_+b)",
-                ")": "($_+b)",
-                "{": "($_+b)",
-                "}": "($_+b)",
-                "[": "(b+a)",
-                "]": "(b+a)",
-                " ": "(b+a)",
+                "(": "($_+[])",
+                ")": "($_+[])",
+                "{": "($_+[])",
+                "}": "($_+[])",
+                "[": "([]+{})",
+                "]": "([]+{})",
+                " ": "([]+{})",
             }, charValue = {
                 "a": 1,
                 "b": 2,
@@ -162,14 +147,14 @@
                 "]": 14,
                 " ": 7
             };
-            if (char in charModel && ((Math.random() * 2) | 0) == 1) {
-                return `(${
-                    randomO(charModel[char])
-                    }+b)[${
+            if (char in charModel) {
+                return `${
+                    charModel[char]
+                    }[${
                     getNum(charValue[char])
                     }]`;
             }
-            if (char.match(/[a-z]/) && ((Math.random() * 2) | 0) == 1) {
+            if (char.match(/[a-z]/)) {
                 var code = char.charCodeAt() - 87;
                 return `(${
                     getNum(code)
@@ -177,7 +162,7 @@
                     getNum(code + 1)
                     })`;
             }
-            if (char.match(/[A-Z]/) && ((Math.random() * 2) | 0) == 1) {
+            if (char.match(/[A-Z]/)) {
                 var charLower = char.toLowerCase();
                 return `${getChr(charLower)}[_$$]()`;
             }
@@ -187,25 +172,19 @@
             number += "";
             if (number == "Infinity") return getNum("1e1000");
             else if (number == "-Infinity") return getNum("-1e1000");
-            else if (number == "NaN") return "+b[b]";
-            else if (number == "-NaN") return "-b[b]";
+            else if (number == "NaN") return "+[][[]]";
+            else if (number == "-NaN") return "-[][[]]";
             var result = "",
-                negative = number[0] == "-",
-                numberModel = [
-                    ["+b", "~~b", "+!b", "~~!b"],
-                    ["+!+b", "+!!b", "-~b", "-~"]
-                ];
+                negative = number[0] == "-";
             for (var i = negative ? 1 : 0; i < number.length; i++) {
                 var join = "";
                 if (number[i] == 0) {
-                    join += numberModel[0][(Math.random() * 4) | 0];
+                    join += "+[]";
                 } else if (isNaN(number[i]))
                     join += getChr(number[i]);
                 else for (var j = 0; j < number[i]; j++)
-                    join = numberModel[1][
-                        (Math.random() * (j == 0 ? 3 : 4)) | 0
-                    ] + join;
-                result += i == (negative ? 1 : 0) ? join : `+b+(${join})`;
+                    join = (j == 0 ? "-~[]" : "-~") + join;
+                result += i == (negative ? 1 : 0) ? join : `+[]+(${join})`;
             }
             return `${negative ? "-" : "+"}(${result})`;
         }
