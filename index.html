@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+        }
+
+        #a,
+        #b {
+            width: calc(50% - 10px);
+            height: calc(100% - 10px);
+            box-sizing: border-box;
+            padding: 5px;
+            border: 0px;
+        }
+    </style>
+    <script src="enfuck.js"></script>
+    <script src="$_.js"></script>
+</head>
+
+<body>
+    <textarea id="a"></textarea>
+    <textarea id="b"></textarea>
+    <script>
+        var text = document.querySelector("#a"),
+            textarea = document.querySelector("#b");
+        text.oninput = function () {
+            var content = this.value,
+                enContent = "";
+            for (var i = 0; i < content.length; i++) {
+                if (!fromCharCode[content[i]])
+                    fromCharCode[content[i]] = "__$(" + getNum(content[i].charCodeAt()) + ")";
+                if (code[content[i]] && code[content[i]].length < fromCharCode[content[i]].length)
+                    enContent += code[content[i]];
+                else
+                    enContent += fromCharCode[content[i]];
+                if (i < content.length - 1) enContent += "+\n";
+            }
+            textarea.value = enContent;
+        }
+        function getNum(v) {
+            v = v + "";
+            var result = "";
+            for (var i = 0; i < v.length; i++) {
+                var val = "";
+                if (v[i] == 0)
+                    val = "+[]";
+                else
+                    for (var j = 0; j < v[i]; j++)
+                        val += "+!![]";
+                if (i != 0)
+                    result += `+(${val})`;
+                else
+                    result += val + "+[]"
+            }
+            return `(${result})`;
+        }
+    </script>
+</body>
+
+</html>
