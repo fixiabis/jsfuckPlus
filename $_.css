@@ -1,0 +1,41 @@
+* {
+    color: #ddd;
+    font-family: monospace;
+    background: #222;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+}
+
+#i,
+#o {
+    resize: none;
+    outline: none;
+    width: 600px;
+    height: 250px;
+    box-sizing: border-box;
+    padding: 5px;
+    border: 1px solid #ddd;
+}
+
+header {
+    font-size: 20px;
+    line-height: 40px;
+    text-indent: 10px;
+    width: 100%;
+    height: 40px;
+}
+
+#c {
+    width: 600px;
+    margin: 0px auto;
+}
+
+#e {
+    width: 600px;
+    border: 1px solid #ddd;
+}
