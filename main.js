@@ -29,4 +29,7 @@ In.value = `/* example */
 })({});`;
 Exe.onclick = function () {
     eval(Out.value);
-}
+};
+document.querySelector("header").onclick = function () {
+    location = "index.html";
+};

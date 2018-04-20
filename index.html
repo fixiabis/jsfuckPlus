@@ -8,6 +8,15 @@
     <title></title>
     <style>
         @import url($_.css);
+        .h2 {
+            font-size: 16px;
+        }
+
+        .code {
+            background: #111;
+            box-sizing: border-box;
+            padding: 5px;
+        }
     </style>
 </head>
 
@@ -16,11 +25,139 @@
         jsfuck+ : fuck string, number, boolean and more
     </header>
     <div id="c">
-        &lt;script src="
-        <a href="https://fixiabis.github.io/jsfuckPlus/$_.js">
-            https://fixiabis.github.io/jsfuckPlus/$_.js
+        Paste
+        <a style="color: royalblue" href="https://fixiabis.github.io/jsfuckPlus/$_.js">
+            &lt;script src="https://fixiabis.github.io/jsfuckPlus/$_.js"&gt;&lt;/script&gt;
         </a>
-        "&gt;&lt;/script&gt;
+        before the your any script tags.
+        <br>
+        <a href="short.html">jsfuck</a> : Let js difficult to understand.
+        <br>
+        <a href="random.html">jsfuck random</a> : Let js more complex.
+        <br>
+        <br>
+        <font style="font-size: 20px">How to let js difficult to understand?(in ES6)</font>
+        <br>
+        <br>
+        <font class="h2">if statement(use &amp;&amp;)</font>
+        <br>
+        <br>
+        <div class="code">if (true) alert(1);</div> to
+        <div class="code">true &amp;&amp; alert(1);</div>
+        <br>
+        <font class="h2">if...else statement(use ?:)</font>
+        <br>
+        <br>
+        <div class="code">
+            if (false) alert(1); else alert(2);
+        </div> to
+        <div class="code">
+            false ? alert(1) : alert(2);
+        </div>
+        <br>
+        <font class="h2">for statement(use $$_)</font>
+        <br>
+        <br>
+        <div class="code">
+            for (var i = 0; i &lt; 5; i++) alert(i);
+        </div> to
+        <div class="code">
+            $$_(0, $ => $ &lt; 5)($ => alert($));
+        </div>
+        <br>
+        <font class="h2">for...in statement(use $$_)</font>
+        <br>
+        <br>
+        <div class="code">
+            for (var i in {a:1}) alert(i);
+        </div> to
+        <div class="code">
+            $$_({a:1})($ => alert($));
+        </div>
+        <br>
+        <font class="h2">for...of statement(use $$_)</font>
+        <br>
+        <br>
+        <div class="code">
+            for (var i of [1, 2, 3]) alert(i);
+        </div> to
+        <div class="code">
+            $$_([1, 2, 3])($ => alert($));
+        </div>
+        <br>
+        <font class="h2">while statement(use $$_)</font>
+        <br>
+        <br>
+        <div class="code">
+            while (true) {
+            <br> &nbsp;&nbsp; alert(1);
+            <br> &nbsp;&nbsp; break;
+            <br> }
+        </div> to
+        <div class="code">
+            $$_($ => true &amp;&amp; $)($ => ($ => false)(alert(1)));
+        </div>
+        <br>
+        <font class="h2">switch statement(use _$_)</font>
+        <br>
+        <br>
+        <div class="code">
+            switch(1) {
+            <br> &nbsp;&nbsp; case 1:
+            <br> &nbsp; &nbsp; &nbsp;&nbsp;alert(1);
+            <br> &nbsp; &nbsp; &nbsp;&nbsp;break;
+            <br>}
+        </div> to
+        <div class="code">
+            _$_(1)(
+            <br> &nbsp;&nbsp; $ => $ == 1 &amp;&amp; alert(1)
+            <br>)();
+        </div>
+        <br>
+        <font class="h2">multi command statement(use arrow function)</font>
+        <br>
+        <br>
+        <div class="code">
+            {
+            <br> &nbsp;&nbsp; alert(1);
+            <br> &nbsp;&nbsp; alert(1);
+            <br> }
+        </div> to
+        <div class="code">
+            (() => {
+            <br> &nbsp;&nbsp; alert(1);
+            <br> &nbsp;&nbsp; alert(1);
+            <br> })();
+        </div>
+        <br>
+        <font class="h2">global variable(use _)</font>
+        <br>
+        <br>
+        <div class="code">
+            var a = 0;
+            <br> alert(a);
+        </div> to
+        <div class="code">
+            _["a"] = 0;
+            <br> _["alert"](_["a"]);
+        </div>
+        <br>
+        <font class="h2">using object(use _$_)</font>
+        <br>
+        <br>
+        <div class="code">
+            var a = {
+            <br> &nbsp;&nbsp; a: 5,
+            <br> &nbsp;&nbsp; b: 6
+            <br>};
+        </div> to
+        <div class="code">
+            _["a"] = _$_({})(
+            <br> &nbsp;&nbsp; ___ => ___["a"] = 5
+            <br>)(
+            <br> &nbsp;&nbsp; ___ => ___["b"] = 6
+            <br>)();
+        </div>
     </div>
 </body>
 

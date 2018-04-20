@@ -4,6 +4,11 @@
     background: #222;
 }
 
+a {
+    color: royalblue;
+    text-decoration: none;
+}
+
 html,
 body {
     width: 100%;
@@ -23,6 +28,7 @@ body {
 }
 
 header {
+    cursor: pointer;
     font-size: 20px;
     line-height: 40px;
     text-indent: 10px;
