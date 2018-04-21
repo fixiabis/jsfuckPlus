@@ -1,46 +1,8 @@
-function enFuck(content, tabs) {
-    var enContent = "";
-    for (var i = 0; i < content.length; i++) {
-        enContent += getChr(content[i]);
-        if (i < content.length - 1) enContent += "+\n" + tabs;
-    }
-    return AB(enContent);
-}
 function AB(content) {
     while (content.match(/a|b/))
         content = content.replace("a", randomO("{}")).replace("b", randomO());
     return content;
 }
-In.oninput = function () {
-    var enString = "",
-        content = this.value.replace(/\"\"/g, "[]+[]").split("\"");
-    for (var i = 0; i < content.length; i++) {
-        if (!content) continue;
-        if (i % 2 == 0) enString += content[i];
-        else {
-            var tabs = "";
-            if (content[i - 1] && content[i - 1].length > 0) {
-                var lines = content[i - 1].split("\n"),
-                    lastLine = lines[lines.length - 1],
-                    spaceMatch = lastLine.match(/ /g);
-                if (spaceMatch && spaceMatch.length == lastLine.length)
-                    tabs = lastLine;
-            }
-            enString += enFuck(content[i], tabs);
-        };
-    }
-    var nums = enString.match(/\W(NaN|-NaN|Infinity|-Infinity|\d+e\+\d+|-\d+e\d+|\d+\.\d+|-\d+\.\d+|-\d+|\d+)/g);
-    if (nums)
-        for (var i = 0; i < nums.length; i++) {
-            var sym = nums[i].match(/\W/, "");
-            if (sym != null) sym = sym[0];
-            if (sym == "$") continue;
-            enString = enString.replace(nums[i], sym + AB(getNum(nums[i].replace(sym, ""))));
-        }
-    while (enString.match(/true|false/))
-        enString = enString.replace("true", `!!${randomO()}`).replace("false", `!${randomO()}`);
-    Out.value = enString;
-};
 function randomO(result) {
     var v = ((Math.random() * 4) | 0);
     if (!result) result = "[]";
