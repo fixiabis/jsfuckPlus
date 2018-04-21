@@ -20,7 +20,7 @@ body {
 #o {
     resize: none;
     outline: none;
-    width: 600px;
+    width: 100%;
     height: 250px;
     box-sizing: border-box;
     padding: 5px;
@@ -37,11 +37,17 @@ header {
 }
 
 #c {
-    width: 600px;
+    max-width: 800px;
     margin: 0px auto;
 }
 
 #e {
-    width: 600px;
+    width: 100%;
     border: 1px solid #ddd;
+}
+
+@media screen and (max-width: 800px) {
+    #c {
+        max-width: 600px;
+    }
 }
