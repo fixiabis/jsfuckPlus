@@ -50,13 +50,13 @@
         .c .code:nth-child(2),
         .c:hover .code:last-child {
             z-index: 2;
-            transform: rotateX(360deg);
+            opacity: 1;
         }
 
         .c .code:last-child,
         .c:hover .code:nth-child(2) {
             z-index: 1;
-            transform: rotateX(180deg);
+            opacity: 0;
         }
 
         .c.c2,
@@ -219,12 +219,11 @@
             <div class="code">
                 <a>_</a>["a"] = 0;
                 <br>
-                <a>_</a>["alert"](
-                <a>_</a>["a"]);
+                <a>_</a>["alert"](<a>_</a>["a"]);
             </div>
         </div>
         <div class="c c5">
-            <div class="h2">function variable(use ___, =>)</div>
+            <div class="h2">function scope(use ___, =>)</div>
             <div class="code">
                 <a>function</a> a(a, b) {
                 <br> &nbsp;&nbsp;
@@ -240,8 +239,7 @@
                 <br> &nbsp;&nbsp;
                 <a>___</a>["c"] = 5;
                 <br> &nbsp;&nbsp; alert(a + b);
-                <br> &nbsp;&nbsp; alert(
-                <a>___</a>["c"]);
+                <br> &nbsp;&nbsp; alert(<a>___</a>["c"]);
                 <br> };
             </div>
         </div>
@@ -256,8 +254,7 @@
                 <a>}</a>;
             </div>
             <div class="code">
-                _["a"] = _$_(
-                <a>{}</a>)(
+                _["a"] = _$_(<a>{}</a>)(
                 <br> &nbsp;&nbsp; ___ => ___["a"] = 5)(
                 <br> &nbsp;&nbsp; ___ => ___["b"] = 6
                 <br>)();

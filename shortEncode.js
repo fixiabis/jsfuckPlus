@@ -79,6 +79,9 @@ function getChr(char) {
         var charLower = char.toLowerCase();
         return `${getChr(charLower)}[_$$]()`;
     }
+    if (char.match(/\d/)) {
+        return `${getNum(char)}+[]`;
+    }
     return `__$(${getNum(char.charCodeAt())})`;
 }
 function getNum(number) {
@@ -98,6 +101,10 @@ function getNum(number) {
         else for (var j = 0; j < number[i]; j++)
             join = (j == 0 ? "-~[]" : "-~") + join;
         result += i == (negative ? 1 : 0) ? join : `+[]+(${join})`;
+    }
+    if (number.length == negative + 1) {
+        console.log("is < 10");
+        return result.substr(negative, result.length);
     }
     return `${negative ? "-" : "+"}(${result})`;
 }

@@ -18,34 +18,33 @@ In.onkeydown = function (event) {
 };
 Out.onkeydown = In.onkeydown;
 In.oninput = function () {
-    var content = this.value;
-    content = content.replace(/\"\"|\'\'/g, "[]+[]");
-    function en(content, sym) {
-        var enString = "";
-        for (var i = 0; i < content.length; i++) {
-            if (!content) continue;
-            if (i % 2 == 0) enString += content[i];
-            else {
-                if (content.length % 2 == 0 && i == content.length - 1) {
-                    enString += sym + content[i];
-                    break;
-                }
-                var tabs = "";
-                if (content[i - 1] && content[i - 1].length > 0) {
-                    var lines = content[i - 1].split("\n"),
-                        lastLine = lines[lines.length - 1],
-                        spaceMatch = lastLine.match(/ /g);
-                    if (spaceMatch && spaceMatch.length == lastLine.length)
-                        tabs = lastLine;
-                }
-                enString += enFuck(content[i], tabs);
-            };
-        }
-        return enString;
+    var content = this.value,
+        strStart = "",
+        strTemp = "",
+        strTabs = "",
+        enString = "";
+    for (var i = 0; i < content.length; i++) {
+        if (content[i].match(/\"|\'/)) {
+            if (!strStart) {
+                var j = i - 1;
+                while (content[j] == " ") strTabs += content[j--];
+                strStart = content[i];
+            } else if (content[i - 1] == "\\")
+                strTemp += content[i];
+            else if (content[i] == strStart) {
+                enString += enFuck(strTemp, strTabs);
+                strStart = strTemp = strTab = "";
+            }
+        } else if (strStart) strTemp += content[i];
+        else enString += content[i];
     }
-    var enString = en(content.split("\""), "\"");
-    if (enString.includes("\'")) enString = en(enString.split("\'"), "\'");
-    var nums = enString.match(/\W(NaN|-NaN|Infinity|-Infinity|\d+e\+\d+|-\d+e\d+|\d+\.\d+|-\d+\.\d+|-\d+|\d+)/g);
+    while (enString.match(/\"\"|\'\'/))
+        enString = enString
+            .replace("\"\"", `${randomO()}+${randomO()}`)
+            .replace("\'\'", `${randomO()}+${randomO()}`)
+    var nums = enString.match(
+        /\W(NaN|-NaN|Infinity|-Infinity|\d+e\+\d+|-\d+e\d+|\d+\.\d+|-\d+\.\d+|-\d+|\d+)/g
+    );
     if (nums)
         for (var i = 0; i < nums.length; i++) {
             var sym = nums[i].match(/\W/, "");
@@ -67,12 +66,8 @@ In.value = `/* example */
         "alert"
     ](___["a"]);
 })({});`;
-Exe.onclick = function () {
-    eval(Out.value);
-};
-document.querySelector("header").onclick = function () {
-    location = "index.html";
-};
+Exe.onclick = () => eval(Out.value);
+document.querySelector("header").onclick = () => location = "index.html";
 function enFuck(content, tabs) {
     var enContent = "";
     for (var i = 0; i < content.length; i++) {

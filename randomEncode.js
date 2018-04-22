@@ -30,7 +30,7 @@ function getChr(char) {
         "r": "(!!b+b)",
         "s": "(!b+b)",
         "t": "(!!b+b)",
-        "u": "b[b]+b",
+        "u": "(b[b]+b)",
         "v": "($_+b)",
         "B": "((!b)[__]+b)",
         "C": "_$$",
@@ -90,6 +90,9 @@ function getChr(char) {
     if (char.match(/[A-Z]/) && ((Math.random() * 2) | 0) == 1) {
         var charLower = char.toLowerCase();
         return `${getChr(charLower)}[_$$]()`;
+    }
+    if (char.match(/\d/) && ((Math.random() * 2) | 0) == 1) {
+        return `${getNum(char)}+b`;
     }
     return `__$(${getNum(char.charCodeAt())})`;
 }
