@@ -51,4 +51,10 @@ header {
     #c {
         max-width: 600px;
     }
+    header {
+        text-align: center;
+    }
+    header span {
+        display: none;
+    }
 }

@@ -102,10 +102,8 @@ function getNum(number) {
             join = (j == 0 ? "-~[]" : "-~") + join;
         result += i == (negative ? 1 : 0) ? join : `+[]+(${join})`;
     }
-    if (number.length == negative + 1) {
-        console.log("is < 10");
+    if (number.length == negative + 1)
         return result.substr(negative, result.length);
-    }
     return `${negative ? "-" : "+"}(${result})`;
 }
 In.oninput();
