@@ -32,28 +32,35 @@ In.oninput = function () {
             } else if (content[i - 1] == "\\")
                 strTemp += content[i];
             else if (content[i] == strStart) {
-                enString += enFuck(strTemp, strTabs);
+                if (strTemp)
+                    enString += enFuck(strTemp, strTabs);
+                else
+                    enString += `${randomO()}+${randomO()}`;
                 strStart = strTemp = strTab = "";
+            } else {
+                strTemp += content[i];
             }
         } else if (strStart) strTemp += content[i];
         else enString += content[i];
     }
-    while (enString.match(/\"\"|\'\'/))
-        enString = enString
-            .replace("\"\"", `${randomO()}+${randomO()}`)
-            .replace("\'\'", `${randomO()}+${randomO()}`)
     var nums = enString.match(
-        /\W(NaN|-NaN|Infinity|-Infinity|\d+e\+\d+|-\d+e\d+|\d+\.\d+|-\d+\.\d+|-\d+|\d+)/g
+        /(^|\W)(NaN|-NaN|Infinity|-Infinity|\d+.\d+.\d+|-\d+.\d+.\d+|\d+.\d+|-\d+.\d+|-\d+|\d+)/g
     );
     if (nums)
         for (var i = 0; i < nums.length; i++) {
-            var sym = nums[i].match(/\W/, "");
-            if (sym != null) sym = sym[0];
+            var sym = nums[i].match(/\W/);
+            sym = sym != null ? sym[0] : "";
             if (sym == "$") continue;
             enString = enString.replace(nums[i], sym + AB(getNum(nums[i].replace(sym, ""))));
         }
-    while (enString.match(/true|false/))
-        enString = enString.replace("true", `!!${randomO()}`).replace("false", `!${randomO()}`);
+    var bools = enString.match(/\W(true|false)/);
+    if (bools)
+        for (var i = 0; i < bools.length; i++) {
+            var syms = bools[i].match(/\W/);
+            if (sym != null) sym = sym[0];
+            if (sym == "$") continue;
+            enString = enString.replace(bools[i], sym + (bools.match(/true/) ? "!" : "") + "!" + randomO());
+        }
     Out.value = enString;
 };
 In.value = `/* example */

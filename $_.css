@@ -51,6 +51,8 @@ header {
     #c {
         max-width: 600px;
     }
+}
+@media screen and (max-width: 600px) {
     header {
         text-align: center;
     }
