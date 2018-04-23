@@ -4,7 +4,7 @@ var charModel = {
         ["!b", 1],
         ["b[c]", 12],
         ["(!b)[c]", 14],
-        ["+b[b]", 0],
+        ["+b[b]", 1],
         ["$_", 24],
         ["$_()", 9],
         ["_$$", 8],
@@ -191,7 +191,7 @@ var charModel = {
         ["_$$", 7]
     ],
     "F": [
-        ["$_", 0]
+        ["$_", 9]
     ],
     "N": [
         ["+b[b]", 0],
@@ -242,7 +242,7 @@ var charModel = {
     "]": [
         ["b+a", 14],
         ["$_", 34],
-        ["(()=>[])", 4]
+        ["(()=>[])", 5]
     ],
     " ": [
         ["b+a", 7]
@@ -259,10 +259,10 @@ for (var i of "$_+-*/&|^<>=.~!?:") charModel[i] = [];
 for (var i of "$_")
     for (var j of "$_") {
         var c = `(${i}=>${j})`,
-            $i = c.indexOf("$"),
-            _i = c.indexOf("_"),
-            i$ = c.lastIndexOf("$"),
-            i_ = c.lastIndexOf("_");
+            $i = c.indexOf("$") - 1,
+            _i = c.indexOf("_") - 1,
+            i$ = c.lastIndexOf("$") - 1,
+            i_ = c.lastIndexOf("_") - 1;
         if ($i > -1) charModel["$"].push([c, $i]);
         if (_i > -1) charModel["_"].push([c, _i]);
         if (i$ > -1 && i$ != $i) charModel["$"].push([c, i$]);
@@ -279,7 +279,7 @@ for (var i of "$_")
             }
             for (var l of "=>") {
                 var c = `(${i}=>${j}${l}${k})`,
-                    n = c.indexOf(l);
+                    n = c.indexOf(l) - 1;
                 charModel[l].push([c, n]);
                 charModel[l].push([c, 4]);
             }
