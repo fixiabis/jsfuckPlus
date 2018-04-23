@@ -1,4 +1,3 @@
-
 var charModel = {
     "a": [
         ["!b", 1],

@@ -29,9 +29,9 @@ In.oninput = function () {
                 var j = i - 1;
                 while (content[j] == " ") strTabs += content[j--];
                 strStart = content[i];
-            } else if (content[i - 1] == "\\")
+            } else if (content[i - 1] == "\\" && content[i - 2] != "\\") {
                 strTemp += content[i];
-            else if (content[i] == strStart) {
+            } else if (content[i] == strStart) {
                 if (strTemp)
                     enString += enFuck(strTemp, strTabs);
                 else
@@ -77,9 +77,12 @@ Exe.onclick = () => eval(Out.value);
 document.querySelector("header").onclick = () => location = "index.html";
 function enFuck(content, tabs) {
     var enContent = "";
+    content = content.replace(/\\/g, "\\\\");
+    content = eval(`"${content}"`);
+    console.log(content);
     for (var i = 0; i < content.length; i++) {
         if (content[i] == "\\") {
-            enContent += getChr(eval(`"${"\\" + content[++i]}}"`));
+            enContent += getChr(eval(`"${"\\" + content[++i]}"`));
         } else enContent += getChr(content[i]);
         if (i < content.length - 1) enContent += "+\n" + tabs;
     }
