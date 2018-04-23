@@ -46,7 +46,6 @@ In.oninput = function () {
     var nums = enString.match(
         /(^|\W)(NaN|-NaN|Infinity|-Infinity|\d+.\d+.\d+|-\d+.\d+.\d+|\d+.\d+|-\d+.\d+|-\d+|\d+)/g
     );
-    console.log(nums);
     if (nums)
         for (var i = 0; i < nums.length; i++) {
             var sym = nums[i].match(/\W/);
@@ -60,7 +59,6 @@ In.oninput = function () {
             var sym = bools[i].match(/\W/);
             sym = sym != null ? sym[0] : "";
             if (sym == "$") continue;
-            console.log(sym);
             enString = enString.replace(bools[i], sym + (bools[i].match(/true/) ? "!" : "") + "!" + randomO());
         }
     Out.value = enString;
