@@ -9,7 +9,7 @@
     <style>
         @import url($_.css);
         .h2 {
-            font-size: 16px;
+            font-size: 25px;
         }
 
         .code {
@@ -22,24 +22,25 @@
         .c {
             cursor: default;
             width: 100%;
-            height: 55px;
+            height: 70px;
             position: relative;
             overflow: hidden;
             margin: 10px 0px;
         }
 
         .c .h2 {
-            line-height: 30px;
-            height: 30px;
+            line-height: 40px;
+            height: 40px;
             transition: all 0.5s;
         }
 
         .c .code {
-            width: 100%;
-            height: 25px;
+            width: calc(100% - 10px);
+            height: 30px;
             position: absolute;
-            top: 30px;
+            top: 40px;
             left: 0px;
+            margin: 0px 5px;
             transition: all 0.5s;
         }
 
@@ -61,17 +62,17 @@
 
         .c.c2,
         .c.c2 .code {
-            height: 70px;
+            height: 100px;
         }
 
         .c.c4,
         .c.c4 .code {
-            height: 100px;
+            height: 145px;
         }
 
         .c.c5,
         .c.c5 .code {
-            height: 120px;
+            height: 165px;
         }
     </style>
 </head>
@@ -92,7 +93,7 @@
         <a href="random.html">random</a> : Let js more complex.
         <br>
         <br>
-        <font style="font-size: 20px">How to let js difficult to understand?(in ES6)</font>
+        <font style="font-size: 25px">How to let js difficult to understand?(in ES6)</font>
         <div class="c">
             <div class="h2">if statement(use &amp;&amp;)</div>
             <div class="code">

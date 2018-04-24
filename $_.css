@@ -1,6 +1,7 @@
 * {
     color: #ddd;
     font-family: monospace;
+	font-size: 20px;
     background: #222;
 }
 
@@ -15,6 +16,7 @@ body {
     width: 100%;
     height: 100%;
     margin: 0px;
+    overflow: auto;
 }
 
 #i,
@@ -28,17 +30,17 @@ body {
     border: 1px solid #ddd;
 }
 
-header {
+header, header * {
     cursor: pointer;
-    font-size: 20px;
-    line-height: 40px;
+    font-size: 30px;
+    line-height: 50px;
     text-indent: 10px;
     width: 100%;
-    height: 40px;
+    height: 50px;
 }
 
 #c {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0px auto;
 }
 
@@ -47,12 +49,17 @@ header {
     border: 1px solid #ddd;
 }
 
+@media screen and (max-width: 1000px) {
+    #c {
+        max-width: 800px;
+    }
+}
 @media screen and (max-width: 800px) {
     #c {
         max-width: 600px;
     }
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 720px) {
     header {
         text-align: center;
     }
