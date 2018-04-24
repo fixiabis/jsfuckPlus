@@ -33,11 +33,11 @@ In.oninput = function () {
             } else if (content[i - 1] == "\\" && content[i - 2] != "\\") {
                 strTemp += content[i];
             } else if (content[i] == strStart) {
-                if (strTemp)
+                if (strTemp) {
                     enString += enFuck(strTemp, strTabs);
-                else
+                    strStart = strTemp = strTabs = "";
+                } else
                     enString += `${randomO()}+${randomO()}`;
-                strStart = strTemp = strTab = "";
             } else {
                 strTemp += content[i];
             }
