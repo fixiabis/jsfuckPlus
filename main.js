@@ -74,7 +74,11 @@ In.value = `/* example */
         "alert"
     ](___["a"]);
 })({});`;
-Exe.onclick = () => eval(Out.value);
+Exe.onclick = () => {
+    try {
+        eval(Out.value);
+    } catch (e) { }
+};
 document.querySelector("header").onclick = () => location = "index.html";
 function enFuck(content, tabs) {
     var enContent = "";
