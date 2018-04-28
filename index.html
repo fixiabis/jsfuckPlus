@@ -76,6 +76,7 @@
         }
     </style>
     <script src="$_.js"></script>
+    <script src="_$.js"></script>
 </head>
 
 <body>
@@ -90,6 +91,11 @@
             &lt;script src="https://fixiabis.github.io/jsfuckPlus/$_.js"&gt;&lt;/script&gt;
         </a>
         before the your any script tags.
+        <br>Remove all global varirable, paste
+        <a style="color: royalblue" href="https://fixiabis.github.io/jsfuckPlus/$_.js">
+            &lt;script src="https://fixiabis.github.io/jsfuckPlus/$_.js"&gt;&lt;/script&gt;
+        </a>
+        after $_.js's script tag.
         <br> Convert link :
         <br>
         <a href="normal.html">normal</a> : Let js difficult to understand.
@@ -251,7 +257,7 @@
             </div>
         </div>
         <div class="c c4">
-            <div class="h2">using object(use _$_)</div>
+            <div class="h2">using object(use [])</div>
             <div class="code">
                 var a =
                 <a>{</a>
@@ -261,11 +267,12 @@
                 <a>}</a>;
             </div>
             <div class="code">
-                _["a"] = _$_(
-                <a>{}</a>)(
-                <br> &nbsp;&nbsp; ___ => ___["a"] = 5)(
-                <br> &nbsp;&nbsp; ___ => ___["b"] = 6
-                <br>)();
+                _["a"] =
+                <a>{</a>
+                <br> &nbsp;&nbsp; ["a"]: 5,
+                <br> &nbsp;&nbsp; ["b"]: 6
+                <br>
+                <a>}</a>;
             </div>
         </div>
         <div class="c">
@@ -275,6 +282,19 @@
             </div>
             <div class="code">
                 <a>$_$</a>(_["Object"])();
+            </div>
+        </div>
+        <div class="c c2">
+            <div class="h2">typeof, delete operator(use $__)</div>
+            <div class="code">
+                <a>typeof</a> 1;
+                <br>
+                <a>delete</a> _["a"];
+            </div>
+            <div class="code">
+                <a>$__</a>("typeof 1");
+                <br>
+                <a>$__</a>("delete _[\"a\"]");
             </div>
         </div>
     </div>
