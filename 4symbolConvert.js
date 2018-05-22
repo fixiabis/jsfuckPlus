@@ -33,7 +33,7 @@ function convert(strs, m) {
                 }
                 return r;
             })(str);
-        return r + "\n_[_____]";
+        return r + "\n__[_____]";
     } else {
         for (var str of strs)
             r = (function (str, cat) {
@@ -45,6 +45,6 @@ function convert(strs, m) {
                 }
                 return r;
             })(str, r);
-        return `_[${r},_____]`;
+        return `__[${r},_____]`;
     }
 }
