@@ -2,10 +2,6 @@ input.addEventListener("keydown", function () {
     output.value = transpile(input.value, 0);
 });
 
-input.addEventListener("input", function () {
-    output.value = transpile(input.value, 0);
-});
-
 uglify.addEventListener("click", function () {
     output.value = transpile(input.value, 1);
 });
