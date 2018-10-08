@@ -1,14 +1,9 @@
-var input = document.getElementById("input");
-var output = document.getElementById("output");
-var execute = document.getElementById("execute");
-var uglify = document.getElementById("uglify");
-
-input.addEventListener("input", function () {
+input.addEventListener("keydown", function () {
     output.value = transpile(input.value, 0);
 });
 
-execute.addEventListener("click", function () {
-    eval(output.value);
+input.addEventListener("input", function () {
+    output.value = transpile(input.value, 0);
 });
 
 uglify.addEventListener("click", function () {

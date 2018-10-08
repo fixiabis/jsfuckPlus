@@ -1,14 +1,9 @@
-var input = document.getElementById("input");
-var output = document.getElementById("output");
-var execute = document.getElementById("execute");
-var uglify = document.getElementById("uglify");
-
-input.addEventListener("input", function () {
-    output.value = transpile(this.value);
+input.addEventListener("keydown", function () {
+    output.value = transpile(input.value);
 });
 
-execute.addEventListener("click", function () {
-    eval(output.value);
+input.addEventListener("input", function () {
+    output.value = transpile(input.value);
 });
 
 uglify.addEventListener("click", function () {
@@ -26,7 +21,11 @@ function transpile(script) {
         if (inStr) {
             if (strStart != script[i]) {
                 str += script[i];
-            } else if (script[i - 1] != "\\") {
+            } else if (
+                script[i - 1] && script[i - 1] != "\\" ||
+                script[i - 1] && script[i - 1] == "\\" &&
+                script[i - 2] && script[i - 2] == "\\"
+            ) {
                 result += fuckify.str(eval("\"" + str + "\""), col);
                 str = "";
                 inStr = false;

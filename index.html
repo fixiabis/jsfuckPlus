@@ -6,112 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>jsfuck+</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="jf/jf+.jf"></script>
     <script src="jf/f/jf+.f.jf"></script>
-    <style>
-        * {
-            color: #f2f2f2;
-            font-size: 20px;
-            font-family: monospace;
-            background-color: #222;
-            box-sizing: border-box;
-        }
-
-        *:focus {
-            outline: none;
-        }
-
-        html,
-        body {
-            width: 100vw;
-            height: 100vh;
-            margin: 0px;
-        }
-
-        body {
-            padding: 5px;
-        }
-
-        h1 {
-            font-size: 30px;
-            height: 70px;
-            padding: 20px;
-            margin: 0px;
-        }
-
-        textarea {
-            resize: none;
-            background-color: #333;
-            width: calc(50% - 10px);
-            height: 400px;
-            padding: 10px;
-            border: 0px;
-            margin: 0px 5px;
-        }
-
-        input {
-            width: 120px;
-            height: 40px;
-            border: #444 solid 2px;
-            margin: 5px;
-            transition: all 0.5s;
-        }
-
-        input:hover {
-            background-color: #444;
-        }
-
-        input:active {
-            transform: scale(0.8);
-        }
-
-        #instant-transpiler {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            height: 400px;
-        }
-
-        #buttons {
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-end;
-            width: 100%;
-            height: 50px;
-        }
-
-        @media screen and (max-width: 800px) {
-            h1 {
-                display: flex;
-                font-size: 20px;
-                align-items: center;
-                justify-content: center;
-            }
-
-            textarea {
-                width: 100%;
-                margin: 0px;
-                margin-bottom: 5px;
-            }
-
-            #instant-transpiler {
-                flex-direction: column;
-            }
-
-            #buttons {
-                align-items: center;
-                justify-content: space-between;
-            }
-
-            #buttons input {
-                width: 50%;
-                margin: 0px 2.5px;
-            }
-
-            #description {
-                display: none;
-            }
-        }
-    </style>
+    
+    <script src="jf/f/js/jf+-cvt.f.js"></script>
 </head>
 
 <body>
@@ -124,10 +23,9 @@
         <input type="button" id="execute" value="execute">
         <input type="button" id="uglify" value="uglify">
     </div>
-    <div id="description">
-        Paste &lt;script src="<a href="jf/jf+.jf">https:fixiabis.github.io/jsfuckPlus/jf/jf+.jf</a>"&gt;&lt;/script&gt; before the your any script tags
-    </div>
+    [<a href="4cjf.html">goto 4cjf</a>] <br>
     version requirements: ES6 or lastest version
+    <script src="js/main.js"></script>
     <script src="js/transpile.js"></script>
 </body>
 
