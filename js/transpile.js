@@ -1,4 +1,4 @@
-input.addEventListener("keyup", function () {
+input.addEventListener("input", function () {
     output.value = transpile(input.value);
 });
 
