@@ -6,10 +6,14 @@ var uglify = document.getElementById("uglify");
 input.addEventListener("keydown", function (e) {
     if (e.which == 9) {
         e.preventDefault();
+        var selectionStart = input.selectionStart;
         input.value =
-            input.value.substr(0, input.selectionStart) +
+            input.value.substr(0, selectionStart) +
             "    " +
-            input.value.substr(input.selectionStart, input.value.length);
+            input.value.substr(selectionStart, input.value.length);
+        input.selectionStart = selectionStart;
+        input.selectionEnd = selectionStart;
+        
     }
 });
 
