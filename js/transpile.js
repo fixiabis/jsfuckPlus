@@ -15,18 +15,15 @@ function transpile(script) {
 
     for (var i = 0; i < script.length; i++) {
         if (inStr) {
-            if (strStart != script[i]) {
+            if (script[i] == "\\" && script[i + 1] == strStart) {
+                str += "\\" + strStart;
+                i++;
+            } else if (strStart != script[i]) {
                 str += script[i];
-            } else if (
-                script[i - 1] && script[i - 1] != "\\" ||
-                script[i - 1] && script[i - 1] == "\\" &&
-                script[i - 2] && script[i - 2] == "\\"
-            ) {
-                result += fuckify.str(eval("\"" + str + "\""), col);
+            } else {
+                result += fuckify.str(eval(strStart + str + strStart), col);
                 str = "";
                 inStr = false;
-            } else {
-                str += script[i];
             }
         } else if (["\"", "\'"].indexOf(script[i]) > -1) {
             strStart = script[i];
