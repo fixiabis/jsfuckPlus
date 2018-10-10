@@ -15,31 +15,31 @@ function transpile(strs, m) {
         )
     ).join("");
 
-    var r = "__[_____]";
+    var r = "$$($$$$$)";
     
     if (m == 0) {
         for (var str of strs)
             r += "\n" + (function (str) {
-                var _ = ["_", "__", "___", "____"],
+                var $ = ["$", "$$", "$$$", "$$$$"],
                     r = "";
                 for (var c of str) {
                     c = parseInt(c, 16);
-                    r += `${_[(c / 4) | 0]}[${_[c % 4]}]`;
+                    r += `${$[(c / 4) | 0]}(${$[c % 4]})`;
                 }
                 return r;
             })(str);
-        return r + "\n_[_____]";
+        return r + "\n$($$$$$)";
     } else {
         for (var str of strs)
             r = (function (str, cat) {
-                var _ = ["_", "__", "___", "____"],
+                var $ = ["$", "$$", "$$$", "$$$$"],
                     r = "";
                 for (var c of str) {
                     c = parseInt(c, 16);
-                    r = `${_[(c / 4) | 0]}[${((r && r + ",") || cat + ",")}${_[c % 4]}]`;
+                    r = `${$[(c / 4) | 0]}((${((r && r + ",") || cat + ",")}${$[c % 4]}))`;
                 }
                 return r;
             })(str, r);
-        return `_[${r},_____]`;
+        return `$((${r},$$$$$))`;
     }
 }
