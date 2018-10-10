@@ -63,24 +63,24 @@ function transpile(script) {
         for (var i = 0; i < numExist.length; i++) {
             result = result.replace(new RegExp(
                 "(\\W)" + numExist[i] + "(\\W)"
-            ), `$1+(${fuckify.str(numExist[i])})$2`);
+            ), "$1+(" + fuckify.str(numExist[i]) + ")$2");
             result = result.replace(new RegExp(
                 "^" + numExist[i] + "(\\W)"
-            ), `+(${fuckify.str(numExist[i])})$1`);
+            ), "+(" + fuckify.str(numExist[i]) + ")$1");
             result = result.replace(new RegExp(
                 "(\\W)" + numExist[i] + "$"
-            ), `$1+(${fuckify.str(numExist[i])})`);
+            ), "$1+(" + fuckify.str(numExist[i]) + ")");
             result = result.replace(new RegExp(
                 "$" + numExist[i] + "^"
-            ), `+(${fuckify.str(numExist[i])})`);
+            ), "+(" + fuckify.str(numExist[i]) + ")");
         }
     }
 
     Object.keys(fuckify.replMap).forEach(function (prim) {
-        result = result.replace(new RegExp(`(\\W)${prim}(\\W)`, "g"), `$1${fuckify.replMap[prim]}$2`);
-        result = result.replace(new RegExp(`^${prim}(\\W)`, "g"), `${fuckify.replMap[prim]}$1`);
-        result = result.replace(new RegExp(`(\\W)${prim}$`, "g"), `$1${fuckify.replMap[prim]}`);
-        result = result.replace(new RegExp(`^${prim}$`, "g"), `${fuckify.replMap[prim]}`);
+        result = result.replace(new RegExp("(\\W)" + prim + "(\\W)", "g"), "$1" + fuckify.replMap[prim] + "$2");
+        result = result.replace(new RegExp("^" + prim + "(\\W)", "g"), fuckify.replMap[prim] + "$1");
+        result = result.replace(new RegExp("(\\W)" + prim + "$", "g"), "$1" + fuckify.replMap[prim]);
+        result = result.replace(new RegExp("^" + prim + "$", "g"), fuckify.replMap[prim]);
     });
 
     return result;
@@ -125,7 +125,7 @@ var fuckify = {
     }
 };
 
-$$_(fuckify.primMap)($ => {
+$$_(fuckify.primMap)(function ($) {
     fuckify.strMap[$] = fuckify.primMap[$] + " + []",
         fuckify.replMap[$] = fuckify.primMap[$]
 });
@@ -134,16 +134,16 @@ $$_([
     ["[object Object]", "[] + {}"],
     ["toString", "_$"],
     ["toUpperCase", "_$$"]
-])($ =>
+])(function ($) {
     fuckify.strMap[$[0]] = $[1]
-);
+});
 
-$$_(fuckify.strMap)($ => {
-    $$_($.split(""))($$ => {
+$$_(fuckify.strMap)(function ($) {
+    $$_($.split(""))(function ($$) {
         if (!fuckify.strMap[$$]) {
-            fuckify.strMap[$$] = `(${fuckify.strMap[$]})[` +
+            fuckify.strMap[$$] = "(" + fuckify.strMap[$] + ")[" +
                 fuckify.num($.indexOf($$)) +
-                `]`;
+                "]";
         }
     });
 });
@@ -158,6 +158,6 @@ $$_([
     ["Function", "$_"],
     ["eval", "$__"],
     ["window", "_"]
-])($ =>
+])(function ($) {
     fuckify.replMap[$[0]] = $[1]
-);
+});
