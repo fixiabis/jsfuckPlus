@@ -1,8 +1,8 @@
 # jsfuck+
 
-DEMO: [https://fixiabis.github.io/jsfuckPlus]
+DEMO: https://fixiabis.github.io/jsfuckPlus
 
-4CJF: [https://fixiabis.github.io/jsfuckPlus/4cjf]
+4CJF: https://fixiabis.github.io/jsfuckPlus/4cjf
 
 ```js
 _    === window // global in node
