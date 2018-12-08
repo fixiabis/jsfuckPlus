@@ -100,7 +100,21 @@ var fuckify = {
     str: function (str, space) {
         if (str === "") return "[] + []";
 
-        var result = str.split("").map(function (s) {
+        var splitedStr = str.match(new RegExp([
+            "constructor",
+            "\\[object Object\\]",
+            "toString",
+            "toUpperCase",
+            "Infinity",
+            "-Infinity",
+            "NaN",
+            "false",
+            "true",
+            "undefined",
+            "."
+        ].join("|"), "g"));
+
+        var result = splitedStr.map(function (s) {
             if (fuckify.strMap[s]) {
                 return fuckify.strMap[s];
             } else if (fuckify.strMap[s.toLowerCase()]) {
@@ -133,7 +147,8 @@ $$_(fuckify.primMap)(function ($) {
 $$_([
     ["[object Object]", "[] + {}"],
     ["toString", "_$"],
-    ["toUpperCase", "_$$"]
+    ["toUpperCase", "_$$"],
+    ["constructor", "_$_"]
 ])(function ($) {
     fuckify.strMap[$[0]] = $[1]
 });
