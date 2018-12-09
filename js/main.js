@@ -2,6 +2,7 @@ var input = document.getElementById("input");
 var output = document.getElementById("output");
 var execute = document.getElementById("execute");
 var uglify = document.getElementById("uglify");
+var download = document.getElementById("download");
 
 input.addEventListener("keydown", function (e) {
     if (e.which == 9) {
