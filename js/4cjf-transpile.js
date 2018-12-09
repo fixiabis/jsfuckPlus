@@ -20,6 +20,9 @@ download.addEventListener("click", function () {
     downloadObject.onclick = function () {
         document.body.removeChild(downloadObject);
     };
+    downloadObject.onload = function () {
+        downloadObject.click();
+    };
 });
 
 function transpile(strs, m) {
