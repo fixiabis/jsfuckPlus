@@ -40,7 +40,7 @@ function transpile(script) {
                 str = "";
                 inStr = false;
             }
-        } else if (["\"", "\'"].indexOf(script[i]) > -1) {
+        } else if (["\"", "\'", "\`"].indexOf(script[i]) > -1) {
             strStart = script[i];
             inStr = true;
         } else {
@@ -126,7 +126,8 @@ var fuckify = {
             "false",
             "true",
             "undefined",
-            "."
+            ".",
+            "\n"
         ].join("|"), "g"));
 
         var result = splitedStr.map(function (s) {

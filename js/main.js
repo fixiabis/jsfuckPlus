@@ -14,7 +14,6 @@ input.addEventListener("keydown", function (e) {
             input.value.substr(selectionStart, input.value.length);
         input.selectionStart = selectionStart + 4;
         input.selectionEnd = selectionStart + 4;
-        
     }
 });
 
