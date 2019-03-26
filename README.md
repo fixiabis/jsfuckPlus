@@ -2,7 +2,7 @@
 
 DEMO: https://fixiabis.github.io/jsfuckPlus
 
-4CJF: https://fixiabis.github.io/jsfuckPlus/4cjf
+4CJF: https://fixiabis.github.io/jsfuckPlus/4cjfa
 
 ```js
 _    === window // global in node
@@ -272,4 +272,15 @@ new A(1, 2);
 $_$(_.A)(1, 2);
 /* fuckify */
 $_$(_[(+{} + [])[-~[]][_$$]()])(+([] + (-~[])), +([] + (-~-~[])));
+```
+
+## void
+
+```js
+/* original */
+void 0;
+/* rewrite */
+(0, [][[]]);
+/* fuckify */
+(+[], [][[]]);
 ```
