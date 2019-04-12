@@ -51,7 +51,7 @@ function transpile(script) {
         }
     }
 
-    var propExist = result.match(/\.[^\n\t ]+/g);
+    var propExist = result.match(/\.[^\(\n\t ]+/g);
 
     if (propExist) {
         for (var i = 0; i < propExist.length; i++) {
