@@ -108,7 +108,7 @@ input:active {
     }
 
     #buttons input {
-        width: calc(100% / 3);
+        min-width: calc(100% / 3);
         margin: 0px 2.5px;
     }
 }

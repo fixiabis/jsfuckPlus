@@ -1,7 +1,7 @@
 var input = document.getElementById("input");
 var output = document.getElementById("output");
 var execute = document.getElementById("execute");
-var uglify = document.getElementById("uglify");
+var rmIE8 = document.getElementById("rm-ie8");
 var download = document.getElementById("download");
 
 input.addEventListener("keydown", function (e) {
